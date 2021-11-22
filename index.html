@@ -8,6 +8,18 @@
 <body>
     <h1>Welcome to Jake's Penguin Database!</h1>
     <p>To look for a penguin in the database, use the search bars to enter a name or habitat and click the 'Search' button below.</p>
+    <form>
+        <label for="commonName"> Enter penguin common name to search for: </label>
+        <input type="text" id="commonName" name="commonName" />
+        <input type="submit" id="commonSearch" value="Search" /><br />
+        <label for="binomialName"> Enter penguin binomial name to search for: </label>
+        <input type="text" id="binomialName" name="binomialName" />
+        <input type="submit" id="binomialSearch" value="Search" /><br />
+        <label for="habitatName"> Enter penguin habitat to search for: </label>
+        <input type="text" id="habitatName" name="habitatName" />
+        <input type="submit" id="habitatSearch" value="Search" /><br />
+    </form>
     <p>To add a new penguin to the database, click the 'Add New' button below.</p>
+    <input type="submit" id="new" value="Add New"/>
 </body>
 </html>
