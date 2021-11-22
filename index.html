@@ -7,19 +7,28 @@
 </head>
 <body>
     <h1>Welcome to Jake's Penguin Database!</h1>
-    <p>To look for a penguin in the database, use the search bars to enter a name or habitat and click the 'Search' button below.</p>
-    <form>
+    <p>To look for a penguin in the database, use the search bars to enter a name or habitat and click the 'Search' button below.</p><br />
+
+    <p>Select a field to search with: </p>
+    <label for="commonRadio"> Common name </label>
+    <input type="radio" id="commonRadio" name="searchType" value="Common name"/><br />
+    <label for="binomialRadio"> Binomial name </label>
+    <input type="radio" id="binomialRadio" name="searchType" value="Binomial name"/><br />
+    <label for="habitatRadio"> Habitat </label>
+    <input type="radio" id="habitatRadio" name="searchType" value="Habitat"/><br /><br />
+
+    <form action="search.php" method="post">
         <label for="commonName"> Enter penguin common name to search for: </label>
-        <input type="text" id="commonName" name="commonName" />
-        <input type="submit" id="commonSearch" value="Search" /><br />
+        <input type="text" id="commonName" name="commonName" placeholder="---Enter common name---" />
+        <input type="submit" id="commonSearch" value="Search" /><br /><br />
         <label for="binomialName"> Enter penguin binomial name to search for: </label>
-        <input type="text" id="binomialName" name="binomialName" />
-        <input type="submit" id="binomialSearch" value="Search" /><br />
+        <input type="text" id="binomialName" name="binomialName" placeholder="---Enter binomial name---" />
+        <input type="submit" id="binomialSearch" value="Search" /><br /><br />
         <label for="habitatName"> Enter penguin habitat to search for: </label>
-        <input type="text" id="habitatName" name="habitatName" />
-        <input type="submit" id="habitatSearch" value="Search" /><br />
+        <input type="text" id="habitatName" name="habitatName" placeholder="---Enter habitat---" />
+        <input type="submit" id="habitatSearch" value="Search" /><br /><br />
     </form>
     <p>To add a new penguin to the database, click the 'Add New' button below.</p>
-    <input type="submit" id="new" value="Add New"/>
+    <input type="submit" id="new" value="Add New" />
 </body>
 </html>
