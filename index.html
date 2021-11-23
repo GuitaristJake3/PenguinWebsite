@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <title>Penguin Website</title>
+    <link rel="stylesheet" type="text/css" href="stylesheet.css" />      <!--Relative, type of file, file location-->
 </head>
 <body>
     <h1>Welcome to Jake's Penguin Database!</h1>
@@ -17,7 +18,7 @@
     <label for="habitatRadio"> Habitat </label>
     <input type="radio" id="habitatRadio" name="searchType" value="Habitat"/><br /><br />
 
-    <form action="search.php" method="post">
+    <form action="search.php" method="post">        <!--Form to submit SQL search query-->
         <label for="commonName"> Enter penguin common name to search for: </label>
         <input type="text" id="commonName" name="commonName" placeholder="---Enter common name---" />
         <input type="submit" id="commonSearch" value="Search" /><br /><br />
