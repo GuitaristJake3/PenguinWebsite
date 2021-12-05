@@ -8,6 +8,10 @@
 </head>
 <body>
     <h1>Welcome to Jake's Penguin Database!</h1>
+
+    <img id="empPic" src="emperor.jpg" height="500" width="300"/>
+    <img id="rockhopPic" src="rockhopper.jpg" height="500" width="300" />
+
     <p>This website allows you to browse a database of different penguin species as well as add and remove them. 
     To look for a penguin in the database, use the search bars to enter a name or habitat and click the 'Search' button below. 
     An entry maybe be modified or removed once it has been located.</p><br />
@@ -19,8 +23,8 @@
     <input class="radio" type="radio" id="binomialRadio" name="searchType" value="Binomial name"/><br />
     <label class="radio" for="habitatRadio"> Habitat </label>
     <input class="radio" type="radio" id="habitatRadio" name="searchType" value="Habitat"/><br /><br />
-    <form id="searchForm" action="search.php" method="post">        <!--Form to submit SQL search query-->
 
+    <form id="searchForm" action="search.php" method="post">        <!--Form to submit SQL search query-->
         <label for="commonName"> Enter penguin common name to search for: </label>
         <input class="searchBox" type="text" id="commonName" name="commonName" placeholder="---Enter common name---" />
         <input class="button" type="submit" id="commonSearch" value="Search" /><br /><br />
@@ -31,6 +35,7 @@
         <input class="searchBox" type="text" id="habitatName" name="habitatName" placeholder="---Enter habitat---" />
         <input class="button" type="submit" id="habitatSearch" value="Search" /><br /><br />
     </form>
+
     <p>To add a new penguin to the database, click the 'Add New' button below.</p>
     <input type="submit" id="new" value="Add New" />
 </body>
