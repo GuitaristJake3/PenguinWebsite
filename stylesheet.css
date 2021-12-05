@@ -1,0 +1,75 @@
+﻿body{
+    background-color: powderblue;
+    margin-left: 200px;
+    margin-right: 200px;
+    text-align: center;
+}
+
+h1{
+    background-color: royalblue;
+    font-family: Candara;
+    font-size: 50px;
+}
+
+p{
+    border-style: dashed;
+    border-color: white;
+    border-width: 5px;
+    padding: 5px;
+    font-family: Verdana;
+    font-size: 18px;
+    margin-left: 200px;
+    margin-right: 200px;
+}
+
+label{
+    font-family: Bahnschrift;
+    font-size: 18px;
+}
+
+.radio{
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+}
+
+#habitatRadio{
+    margin-left: 68px;      /*For alignment*/
+}
+
+#habitatName{
+    margin-left: 63px;      /*For alignment*/
+}
+
+.searchBox {
+    font-family: Bahnschrift;
+    font-size: 18px;
+    text-align: center;
+    width: 300px;
+}
+
+.button {
+    font-family: Impact;
+    font-size: 25px;
+    padding: 5px;
+    background-color: royalblue;
+    vertical-align: middle;
+}
+
+#new{
+    font-family: Impact;
+    font-size: 30px;
+    padding: 10px;
+    background-color: forestgreen;
+    vertical-align: middle;
+}
+
+#empPic{
+    float: left;
+    margin-left: -200px;
+}
+
+#rockhopPic{
+    float: right;
+    margin-right: -200px;
+}
