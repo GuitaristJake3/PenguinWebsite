@@ -13,29 +13,19 @@
                 break;
             }
         }
-        echo $searchName."<br/>";
-        echo $columnName;
         
-        function FindData($searchTerm, $columnTerm){     //A function to perform an SQL query on the penguins database on localhost. $searchTerm will be the search term
-            $serverName = "localhost";
+        function FindData($searchTerm, $columnTerm){     //A function to perform an SQL query on the penguins database on localhost 
+            $serverName = "localhost";                   //$searchTerm will be the searched text and $columnTerm will be the database column to search against
             $userName = "root";
             $password = "";
             $dbase = "penguins";
             $conn = new mysqli($serverName, $userName, $password, $dbase);      //Opens a connection to MySQL server
-            $sql = "Select * from penguin where ".$columnTerm." like '".$searchTerm."';";        //SQL query to run. Only uses commonName currently
-            echo $sql;
+            $sql = "SELECT penguin.commonName, penguin.binomialName, habitat.habitatName FROM penguinhabitation, penguin, habitat 
+            WHERE penguin.penguinID = penguinhabitation.penguinID AND habitat.habitatID = penguinhabitation.habitatID
+            AND ".$columnTerm." LIKE '".$searchTerm."';";        //SQL query to run
+            echo $sql."</br>";
             $result = $conn->query($sql);       //Runs the SQL query
-            return $result;
-        }
-
-        function FindData1($searchTerm){     //A function to perform an SQL query on the penguins database on localhost. $searchTerm will be the search term
-            $serverName = "localhost";
-            $userName = "root";
-            $password = "";
-            $dbase = "penguins";
-            $conn = new mysqli($serverName, $userName, $password, $dbase);      //Opens a connection to MySQL server
-            $sql = "Select * from penguin where commonName like '".$searchTerm."';";        //SQL query to run. Only uses commonName currently
-            $result = $conn->query($sql);       //Runs the SQL query
+            echo var_dump($result)."</br>";
             return $result;
         }
     ?>
@@ -43,13 +33,10 @@
 <body>
     <h1>Database Search Results</h1>
     <?php
-        $result = FindData($searchName, $columnName);        //Will return an array of results. Only uses commonName currently
-        echo var_dump($_POST)."<br/>";
-        echo var_dump($result)."<br/>";
+        $result = FindData($searchName, $columnName);        //Will return an array of results
         if ($result->num_rows > 0) {        //num_rows is the size of results array
             while($row = $result->fetch_assoc()){       //fetch_assoc reads each line of results array
-                echo var_dump($row);
-                echo "<p>ID: ".$row['penguinID']."<p>Common Name: ".$row['commonName']."<p>Binomial Name: ".$row['binomialName'];//."<p>Habitat: ".$row['habitatName']."<br/>";
+                echo "<p>Common Name: ".$row['commonName']."<p>Binomial Name: ".$row['binomialName']."<p>Habitat: ".$row['habitatName']."<br/>";
                 }
             }
         else{
