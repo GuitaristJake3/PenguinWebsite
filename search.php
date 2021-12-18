@@ -23,9 +23,7 @@
             $sql = "SELECT penguin.commonName, penguin.binomialName, habitat.habitatName FROM penguinhabitation, penguin, habitat 
             WHERE penguin.penguinID = penguinhabitation.penguinID AND habitat.habitatID = penguinhabitation.habitatID
             AND ".$columnTerm." LIKE '".$searchTerm."';";        //SQL query to run
-            echo $sql."</br>";
             $result = $conn->query($sql);       //Runs the SQL query
-            echo var_dump($result)."</br>";
             return $result;
         }
     ?>
@@ -35,12 +33,13 @@
     <?php
         $result = FindData($searchName, $columnName);        //Will return an array of results
         if ($result->num_rows > 0) {        //num_rows is the size of results array
+            echo "<p>Search found ".$result->num_rows." matches to '".$searchName."' in ".$columnName.":</p>";
             while($row = $result->fetch_assoc()){       //fetch_assoc reads each line of results array
-                echo "<p>Common Name: ".$row['commonName']."<p>Binomial Name: ".$row['binomialName']."<p>Habitat: ".$row['habitatName']."<br/>";
+                echo "<p>Common Name: ".$row['commonName']."<br/>Binomial Name: ".$row['binomialName']."<br/>Habitat: ".$row['habitatName']."</p>";
                 }
             }
         else{
-            echo "result is no matches to ".$searchName." in ".$columnName."<br/>";
+            echo "<p>Search resulted in no matches to '".$searchName."' in ".$columnName.". Please try another search.</p>";
         }
     ?>
 </body>
