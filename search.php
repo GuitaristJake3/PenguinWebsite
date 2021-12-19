@@ -33,14 +33,20 @@
     <?php
         $result = FindData($searchName, $columnName);        //Will return an array of results
         if ($result->num_rows > 0) {        //num_rows is the size of results array
-            echo "<p>Search found ".$result->num_rows." matches to '".$searchName."' in ".$columnName.":</p>";
+            echo "<p>Your search found <strong><span style='color:green'>".$result->num_rows."</span></strong> matches to '".$searchName."' in ".$columnName.":</p>";
+            $pengNum = 0;
             while($row = $result->fetch_assoc()){       //fetch_assoc reads each line of results array
-                echo "<p>Common Name: ".$row['commonName']."<br/>Binomial Name: ".$row['binomialName']."<br/>Habitat: ".$row['habitatName']."</p>";
+                $pengNum ++;
+                echo "<p><strong><ins>Penguin number ".$pengNum."</ins></strong><br/>Common Name: ".$row['commonName']."<br/>Binomial Name: ".$row['binomialName']."<br/>Habitat: ".$row['habitatName']."</p>";
                 }
             }
         else{
-            echo "<p>Search resulted in no matches to '".$searchName."' in ".$columnName.". Please try another search.</p>";
+            echo "<p>Your search resulted in <strong><span style='color:red'>no</span></strong> matches to '".$searchName."' in ".$columnName.". 
+            Please try another search term or make an entry in the database for this penguin at the main menu.</p>";
         }
     ?>
+    <form id="returnForm" action="index.html">
+        <input class="button" id="returnButton" type="submit" value="Return to Search" />
+    </form>
 </body>
 </html>
