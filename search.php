@@ -30,6 +30,10 @@
 </head>
 <body>
     <h1>Database Search Results</h1>
+
+    <img class="leftPic" id="chinPic" src="chinstrap.jpg" height="500" width="300" align="left" />
+    <img class="rightPic" id="adeliePic" src="adelie.jpg" height="500" width="300" align="right" />
+
     <?php
         $result = FindData($searchName, $columnName);        //Will return an array of results
         if ($result->num_rows > 0) {        //num_rows is the size of results array
@@ -45,6 +49,7 @@
             Please try another search term or make an entry in the database for this penguin at the main menu.</p>";
         }
     ?>
+
     <form id="returnForm" action="index.html">
         <input class="button" id="returnButton" type="submit" value="Return to Search" />
     </form>
