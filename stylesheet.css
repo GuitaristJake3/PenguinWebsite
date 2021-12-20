@@ -64,12 +64,12 @@ label{
     vertical-align: middle;
 }
 
-#empPic{
+.leftPic{
     float: left;
     margin-left: -200px;
 }
 
-#rockhopPic{
+.rightPic{
     float: right;
     margin-right: -200px;
 }
