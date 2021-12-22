@@ -4,39 +4,66 @@
 <head>
     <meta charset="utf-8" />
     <title>Penguin Website</title>
-    <link rel="stylesheet" type="text/css" href="stylesheet.css" />      <!--Relative, type of file, file location-->
+    <link rel="stylesheet" type="text/css" href="stylesheet.css" />      <!--Finds CSS to use: Relative, type of file, file location-->
 </head>
+
 <body>
     <h1>Welcome to Jake's Penguin Database!</h1>
 
     <img class="leftPic" id="empPic" src="emperor.jpg" height="500" width="300" align="left" />
     <img class="rightPic" id="rockhopPic" src="rockhopper.jpg" height="500" width="300" align="right" />
 
-    <p>This website allows you to browse a database of different penguin species as well as add and remove them. 
-    To look for a penguin in the database, use the search bars to enter a name or habitat and click the 'Search' button below. 
-    An entry may be modified or removed once it has been located.</p><br />
-    <p>Select a field to search with: </p>
+    <p>
+        This website allows you to browse a database of different penguin species as well as add and remove them.
+        To look for a penguin in the database, use the search bars to enter a name or habitat and click the 'Search' button below.
+        An entry may be modified or removed once it has been located.
+    </p><br />
 
-    <label class="radio" for="commonRadio"> Common name </label>
-    <input class="radio" type="radio" id="commonRadio" name="searchType" value="Common name"/><br />
+    <p>Select a field to search with before performing the search: </p>
+
+    <label class="radio" for="commonRadio"> Common name </label>        <!--This will select a search bar to enable-->
+    <input class="radio" type="radio" id="commonRadio" name="searchType" value="Common name" onclick="selectSearch(boxes[0], buttons[0])" /><br />
     <label class="radio" for="binomialRadio"> Binomial name </label>
-    <input class="radio" type="radio" id="binomialRadio" name="searchType" value="Binomial name"/><br />
+    <input class="radio" type="radio" id="binomialRadio" name="searchType" value="Binomial name" onclick="selectSearch(boxes[1], buttons[1])" /><br />
     <label class="radio" for="habitatRadio"> Habitat </label>
-    <input class="radio" type="radio" id="habitatRadio" name="searchType" value="Habitat"/><br /><br />
+    <input class="radio" type="radio" id="habitatRadio" name="searchType" value="Habitat" onclick="selectSearch(boxes[2], buttons[2])" /><br /><br />
 
     <form id="searchForm" action="search.php" method="post">        <!--Form to submit SQL search query-->
         <label for="commonName"> Enter penguin common name to search for: </label>
-        <input class="searchBox" type="text" id="commonName" name="commonName" placeholder="---Enter common name---" />
-        <input class="button" type="submit" id="commonSearch" value="Search" /><br /><br />
+        <input class="searchBox" type="text" id="commonName" name="commonName" placeholder="---Enter common name---" disabled />
+        <input class="button" type="submit" id="commonSearch" value="Search" disabled /><br /><br />
         <label for="binomialName"> Enter penguin binomial name to search for: </label>
-        <input class="searchBox" type="text" id="binomialName" name="binomialName" placeholder="---Enter binomial name---" />
-        <input class="button" type="submit" id="binomialSearch" value="Search" /><br /><br />
+        <input class="searchBox" type="text" id="binomialName" name="binomialName" placeholder="---Enter binomial name---" disabled />
+        <input class="button" type="submit" id="binomialSearch" value="Search" disabled /><br /><br />
         <label for="habitatName"> Enter penguin habitat to search for: </label>
-        <input class="searchBox" type="text" id="habitatName" name="habitatName" placeholder="---Enter habitat---" />
-        <input class="button" type="submit" id="habitatSearch" value="Search" /><br /><br />
+        <input class="searchBox" type="text" id="habitatName" name="habitatName" placeholder="---Enter habitat---" disabled />
+        <input class="button" type="submit" id="habitatSearch" value="Search" disabled /><br /><br />
     </form>
 
     <p>To add a new penguin to the database, click the 'Add New' button below.</p>
+
     <input type="submit" id="new" value="Add New" />
+
+    <script>
+        let radios = [document.getElementById('commonRadio'), document.getElementById('binomialRadio'), document.getElementById('habitatRadio')];
+        let boxes = [document.getElementById('commonName'), document.getElementById('binomialName'), document.getElementById('habitatName')];
+        let buttons = [document.getElementById('commonSearch'), document.getElementById('binomialSearch'), document.getElementById('habitatSearch')];
+
+        function selectSearch(box, button) {        //Disables and clears search boxes and buttons that were not clicked 
+            box.disabled = false;
+            button.disabled = false;
+            for (let x of boxes) {
+                if (x != box) {
+                    x.disabled = true;
+                    x.value = '';
+                }
+            }
+            for (let x of buttons) {
+                if (x != button) {
+                    x.disabled = true;
+                }
+            }
+        }
+    </script>
 </body>
 </html>
