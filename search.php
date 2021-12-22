@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <title>Search Results</title>
-    <link rel="stylesheet" type="text/css" href="stylesheet.css" />      <!--Relative, type of file, file location-->
+    <link rel="stylesheet" type="text/css" href="stylesheet.css" />      <!--Finds CSS to use: Relative, type of file, file location-->
     <?php
         foreach ($_POST as $x => $x_value){     //Sets the search term to query and table column to check against based on which text box was submitted
             if (!empty($x_value)){
