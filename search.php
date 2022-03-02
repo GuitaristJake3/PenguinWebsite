@@ -26,6 +26,7 @@
             WHERE penguin.penguinID = penguinhabitation.penguinID AND habitat.habitatID = penguinhabitation.habitatID
             AND ".$columnTerm." LIKE '".$searchTerm."';";        //SQL query to run
             $result = $conn->query($sql);       //Runs the SQL query
+            $conn->close();     //Closes connection to MySQL server
             return $result;
         }
     ?>
@@ -33,8 +34,8 @@
 <body>
     <h1>Database Search Results</h1>
 
-    <img class="leftPic" id="chinPic" src="chinstrap.jpg" height="500" width="300" align="left" />
-    <img class="rightPic" id="adeliePic" src="adelie.jpg" height="500" width="300" align="right" />
+    <img class="leftPic" id="chinPic" src="images/chinstrap.jpg" height="500" width="300" align="left" />
+    <img class="rightPic" id="adeliePic" src="images/adelie.jpg" height="500" width="300" align="right" />
 
     <?php
         $result = FindData($searchName, $columnName);        //Will return an array of results
