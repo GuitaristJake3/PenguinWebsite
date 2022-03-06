@@ -15,7 +15,7 @@
                 break;
             }
         }
-        
+
         function FindData($searchTerm, $columnTerm){     //A function to perform an SQL query on the penguins database on localhost 
             $serverName = "localhost";                   //$searchTerm will be the searched text and $columnTerm will be the database column to search against
             $userName = "root";
