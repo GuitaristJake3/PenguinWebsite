@@ -1,17 +1,17 @@
-﻿body{
+﻿body {
     background-color: powderblue;
     margin-left: 200px;
     margin-right: 200px;
     text-align: center;
 }
 
-h1{
+h1 {
     background-color: royalblue;
     font-family: Candara;
     font-size: 50px;
 }
 
-p{
+p {
     border-style: dashed;
     border-color: white;
     border-width: 5px;
@@ -22,22 +22,46 @@ p{
     margin-right: 200px;
 }
 
-label{
-    font-family: Bahnschrift;
+label {
     font-size: 18px;
+    font-family: Bahnschrift;
 }
 
-.radio{
+#formDiv {
+    background-color:skyblue;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    margin-left: 200px;
+    margin-right: 200px;
+    text-align: left;
+    padding: 10px;
+}
+
+#search {
+    flex-grow: 1;
+    margin-left: 175px;
+}
+
+#invalLabels {
+    font-family: 'Courier New', Courier, monospace;
+    color: red;
+    text-align: right;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.radio {
     width: 18px;
     height: 18px;
     vertical-align: middle;
 }
 
-#habitatRadio{
+#habitatRadio {
     margin-left: 68px;      /*For alignment*/
 }
 
-#habitatName{
+#habitatName {
     margin-left: 63px;      /*For alignment*/
 }
 
@@ -56,7 +80,7 @@ label{
     vertical-align: middle;
 }
 
-#new{
+#new {
     font-family: Impact;
     font-size: 30px;
     padding: 10px;
@@ -64,12 +88,12 @@ label{
     vertical-align: middle;
 }
 
-.leftPic{
+.leftPic {
     float: left;
     margin-left: -200px;
 }
 
-.rightPic{
+.rightPic {
     float: right;
     margin-right: -200px;
 }
