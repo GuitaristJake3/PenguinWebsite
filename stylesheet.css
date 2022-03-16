@@ -23,28 +23,32 @@ p {
 }
 
 label {
-    font-family: Bahnschrift;
     font-size: 18px;
+    font-family: Bahnschrift;
 }
 
 #formDiv {
-    background-color: blue;
+    background-color:skyblue;
     display: flex;
     align-items: stretch;
     justify-content: center;
     margin-left: 200px;
     margin-right: 200px;
+    text-align: left;
+    padding: 10px;
 }
 
 #search {
-    background-color: aqua;
     flex-grow: 1;
+    margin-left: 175px;
 }
 
 #invalLabels {
     font-family: 'Courier New', Courier, monospace;
     color: red;
     text-align: right;
+    flex-grow: 1;
+    flex-shrink: 1;
 }
 
 .radio {

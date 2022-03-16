@@ -30,23 +30,23 @@
 
     <div id="formDiv">
         <div id="search">
-            <form id="searchForm" action="search.php" method="post">        <!--Form to submit SQL search query-->
-                <label for="commonName"> Enter penguin common name to search for: </label>
+            <form id="searchForm" action="search.php" method="post" onsubmit="return noSpecChars(submitSearch())">        <!--Form to submit SQL search query-->
+                <label for="commonName"> Enter common name to search for: </label>
                 <input class="searchBox" type="text" id="commonName" name="commonName" placeholder="---Enter common name---" disabled />
                 <input class="button" type="submit" id="commonSearch" value="Search" disabled /><br /><br />
-                <label for="binomialName"> Enter penguin binomial name to search for: </label>
+                <label for="binomialName"> Enter binomial name to search for: </label>
                 <input class="searchBox" type="text" id="binomialName" name="binomialName" placeholder="---Enter binomial name---" disabled />
                 <input class="button" type="submit" id="binomialSearch" value="Search" disabled /><br /><br />
-                <label for="habitatName"> Enter penguin habitat to search for: </label>
+                <label for="habitatName"> Enter habitat to search for: </label>
                 <input class="searchBox" type="text" id="habitatName" name="habitatName" placeholder="---Enter habitat---" disabled />
                 <input class="button" type="submit" id="habitatSearch" value="Search" disabled />
             </form>
         </div>
         <div id="invalLabels">
             <br />
-            <label for="commonName"> Exclude special characters. </label><br /><br /><br />
-            <label for="binomialName"> Exclude special characters. </label><br /><br /><br />
-            <label for="habitatName"> Exclude special characters. </label>
+            <label for="commonName" id="commonErrorLabel" hidden> Exclude special characters. </label><br /><br /><br />
+            <label for="binomialName" id="binomialErrorLabel" hidden> Exclude special characters. </label><br /><br /><br />
+            <label for="habitatName" id="habitatErrorLabel" hidden> Exclude special characters. </label>
         </div>
     </div>
 
@@ -55,9 +55,10 @@
     <input type="submit" id="new" value="Add New" />
 
     <script>
-        let radios = [document.getElementById('commonRadio'), document.getElementById('binomialRadio'), document.getElementById('habitatRadio')];
-        let boxes = [document.getElementById('commonName'), document.getElementById('binomialName'), document.getElementById('habitatName')];
-        let buttons = [document.getElementById('commonSearch'), document.getElementById('binomialSearch'), document.getElementById('habitatSearch')];
+        const radios = [document.getElementById('commonRadio'), document.getElementById('binomialRadio'), document.getElementById('habitatRadio')];
+        const boxes = [document.getElementById('commonName'), document.getElementById('binomialName'), document.getElementById('habitatName')];
+        const buttons = [document.getElementById('commonSearch'), document.getElementById('binomialSearch'), document.getElementById('habitatSearch')];
+        const errorLabels = [document.getElementById('commonErrorLabel'), document.getElementById('binomialErrorLabel'), document.getElementById('habitatErrorLabel')]
 
         function selectSearch(box, button) {        //Disables and clears search boxes and buttons that were not clicked 
             box.disabled = false;
@@ -71,6 +72,18 @@
             for (let x of buttons) {
                 if (x != button) {
                     x.disabled = true;
+                }
+            }
+            for (let x of errorLabels) {
+                x.hidden = true;
+            }
+        }
+
+        function submitSearch() {      //Finds search box with text in
+            for (let i = 0; i < boxes.length; i++) {
+                if (boxes[i].value != '') {
+                    errorLabels[i].hidden = false;
+                    return boxes[i].value;
                 }
             }
         }
@@ -110,7 +123,11 @@
             input.includes("\/") ||
             input.includes("\.") ||
             input.includes("\,")) {
+                alert("Error: Exclude special characters from search.");
                 return false;
+            }
+            else {
+                return true;
             }
         }
     </script>

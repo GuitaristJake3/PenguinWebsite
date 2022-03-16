@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 25, 2022 at 04:19 PM
+-- Generation Time: Mar 16, 2022 at 03:38 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.10
 
@@ -40,7 +40,8 @@ INSERT INTO `habitat` (`habitatID`, `habitatName`) VALUES
 (1, 'Antarctic coastal areas'),
 (2, 'Islands and coasts in the Southern Pacific and Antarctic Oceans'),
 (3, 'Antarctic peninsular, sub Antarctic islands and the Falkland Islands'),
-(4, 'Islands in the Atlantic and Indian Oceans');
+(4, 'Islands in the Atlantic and Indian Oceans'),
+(5, 'Galapagos Islands');
 
 -- --------------------------------------------------------
 
@@ -66,7 +67,11 @@ INSERT INTO `penguin` (`penguinID`, `commonName`, `binomialName`) VALUES
 (5, 'King', 'Aptenodytes patagonicus'),
 (6, 'Rock Hopper', 'Eudyptes chrysocome'),
 (7, 'Yellow Eyed', 'Megadyptes antipodes'),
-(8, 'Magellanic', 'Spheniscus magellanicus');
+(8, 'Magellanic', 'Spheniscus magellanicus'),
+(9, 'Galapagos', 'Spheniscus mendiculus'),
+(10, 'Chinstrap', 'Pygoscelis antarcticus'),
+(11, 'Little', 'Eudyptula minor'),
+(12, 'Humboldt', 'Spheniscus humboldti');
 
 -- --------------------------------------------------------
 
@@ -91,7 +96,9 @@ INSERT INTO `penguinhabitation` (`penguinID`, `habitatID`) VALUES
 (5, 3),
 (6, 4),
 (7, 2),
-(8, 4);
+(8, 4),
+(9, 5),
+(10, 2);
 
 --
 -- Indexes for dumped tables
@@ -125,13 +132,13 @@ ALTER TABLE `penguinhabitation`
 -- AUTO_INCREMENT for table `habitat`
 --
 ALTER TABLE `habitat`
-  MODIFY `habitatID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `habitatID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `penguin`
 --
 ALTER TABLE `penguin`
-  MODIFY `penguinID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `penguinID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables
