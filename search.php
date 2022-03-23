@@ -30,19 +30,22 @@
                 echo "Connection to database failed.\n";
                 $conn = false;
             }
+            catch (Exception $e){
+                echo "Another exception occurred.\n";
+                $conn = false;
+            }
             return $conn;
         }
 
-        function FindData($searchTerm, $columnTerm, $conn) {     //Performs an SQL query on the penguins database on localhost //$searchTerm will be the searched text and $columnTerm will be the database column to search against
+        function FindData($searchTerm, $columnTerm, $conn) {     //Performs SQL query on penguins database. $searchTerm is the searched text, $columnTerm is the database column to search in
             $sql = "SELECT penguin.commonName, penguin.binomialName, habitat.habitatName FROM penguinhabitation, penguin, habitat 
             WHERE penguin.penguinID = penguinhabitation.penguinID AND habitat.habitatID = penguinhabitation.habitatID
             AND ".$columnTerm." LIKE '".$searchTerm."';";        //SQL query to run
-            try {
+            if ($conn) {
                 $result = $conn->query($sql);       //Runs the SQL query
                 $conn->close();     //Closes connection to MySQL server
             }
-            catch (Error $e) {
-                echo "Database search failed.\n";
+            else {
                 $result = false;
             }
             return $result;
@@ -56,13 +59,7 @@
     <img class="rightPic" id="adeliePic" src="images/adelie.jpg" height="500" width="300" align="right" />
 
     <?php
-        try {
-            $result = FindData($searchName, $columnName, EstablishConnection());        //Will return an array of results
-        }
-        catch (Error $e) {
-            echo "Some other error occurred.\n";
-            $result = false;
-        }
+        $result = FindData($searchName, $columnName, EstablishConnection());        //Will return an array of results
         if ($result != false && $result->num_rows > 0) {        //num_rows is the size of results array
             echo "<p>Your search found <strong><span style='color:green'>".$result->num_rows."</span></strong> matches to '".$searchName."' in ".$columnName.":</p>";
             $pengNum = 0;
