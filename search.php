@@ -22,7 +22,7 @@
             $password = "";
             $dbase = "penguins";
             $driver = new mysqli_driver();
-            $driver->report_mode = MYSQLI_REPORT_ALL;      //Throws exceptions for all errors
+            $driver->report_mode = MYSQLI_REPORT_STRICT | MYSQLI_REPORT_ERROR;      //Throws exceptions for all errors
             try {
                 $conn = new mysqli($serverName, $userName, $password, $dbase);      //Opens a connection to MySQL server
             }
