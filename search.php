@@ -16,17 +16,38 @@
             }
         }
 
-        function FindData($searchTerm, $columnTerm){     //A function to perform an SQL query on the penguins database on localhost 
-            $serverName = "localhost";                   //$searchTerm will be the searched text and $columnTerm will be the database column to search against
+        function EstablishConnection() {
+            $serverName = "localhost";                   
             $userName = "root";
             $password = "";
             $dbase = "penguins";
-            $conn = new mysqli($serverName, $userName, $password, $dbase);      //Opens a connection to MySQL server
+            $driver = new mysqli_driver();
+            $driver->report_mode = MYSQLI_REPORT_STRICT | MYSQLI_REPORT_ERROR;      //Throws exceptions for all errors
+            try {
+                $conn = new mysqli($serverName, $userName, $password, $dbase);      //Opens a connection to MySQL server
+            }
+            catch (mysqli_sql_exception $e){
+                echo "Connection to database failed.\n";
+                $conn = false;
+            }
+            catch (Exception $e){
+                echo "Another exception occurred.\n";
+                $conn = false;
+            }
+            return $conn;
+        }
+
+        function FindData($searchTerm, $columnTerm, $conn) {     //Performs SQL query on penguins database. $searchTerm is the searched text, $columnTerm is the database column to search in
             $sql = "SELECT penguin.commonName, penguin.binomialName, habitat.habitatName FROM penguinhabitation, penguin, habitat 
             WHERE penguin.penguinID = penguinhabitation.penguinID AND habitat.habitatID = penguinhabitation.habitatID
             AND ".$columnTerm." LIKE '".$searchTerm."';";        //SQL query to run
-            $result = $conn->query($sql);       //Runs the SQL query
-            $conn->close();     //Closes connection to MySQL server
+            if ($conn) {
+                $result = $conn->query($sql);       //Runs the SQL query
+                $conn->close();     //Closes connection to MySQL server
+            }
+            else {
+                $result = false;
+            }
             return $result;
         }
     ?>
@@ -38,7 +59,7 @@
     <img class="rightPic" id="adeliePic" src="images/adelie.jpg" height="500" width="300" align="right" />
 
     <?php
-        $result = FindData($searchName, $columnName);        //Will return an array of results
+        $result = FindData($searchName, $columnName, EstablishConnection());        //Will return an array of results
         if ($result != false && $result->num_rows > 0) {        //num_rows is the size of results array
             echo "<p>Your search found <strong><span style='color:green'>".$result->num_rows."</span></strong> matches to '".$searchName."' in ".$columnName.":</p>";
             $pengNum = 0;
