@@ -16,6 +16,10 @@
             }
         }
 
+        function EscapeInput($conn, $input) {       //Returns an SQL safe string
+            return $conn ? $conn->real_escape_string($input) : false;
+        }       
+
         function EstablishConnection() {
             $serverName = "localhost";                   
             $userName = "root";
@@ -59,7 +63,8 @@
     <img class="rightPic" id="adeliePic" src="images/adelie.jpg" height="500" width="300" align="right" />
 
     <?php
-        $result = FindData($searchName, $columnName, EstablishConnection());        //Will return an array of results
+        $escapedInput = EscapeInput(EstablishConnection(), $searchName);
+        $result = $escapedInput ? FindData($escapedInput, $columnName, EstablishConnection()) : false;        //Will return an array of results
         if ($result != false && $result->num_rows > 0) {        //num_rows is the size of results array
             echo "<p>Your search found <strong><span style='color:green'>".$result->num_rows."</span></strong> matches to '".$searchName."' in ".$columnName.":</p>";
             $pengNum = 0;
